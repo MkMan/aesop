@@ -3,9 +3,15 @@ import ReactDOM from "react-dom";
 
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css"; // Import precompiled Bootstrap css
-import "./style.scss";
+import "./index.scss";
 
-const App = () => <div>Hello World</div>;
+const App = () => {
+  return (
+    <div className="app">
+      <h1 className="title">Aesop</h1>
+    </div>
+  );
+};
 
-const appContainer = document.getElementById("app-container");
+const appContainer = document.getElementById("app");
 ReactDOM.render(<App />, appContainer);
