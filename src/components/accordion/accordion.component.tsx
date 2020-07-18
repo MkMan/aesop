@@ -36,6 +36,7 @@ const AccordionItem: React.FunctionComponent<
           <button
             className="btn btn-link btn-block text-left"
             type="button"
+            data-testid="accordion-item-button"
             data-toggle="collapse"
             data-target={`#${bodyId}`}
             aria-expanded="true"
@@ -50,6 +51,7 @@ const AccordionItem: React.FunctionComponent<
         id={bodyId}
         className="collapse"
         aria-labelledby={headingId}
+        data-testid="accordion-item-body"
         data-parent={`#${groupName}`}
       >
         <div className="card-body">{body}</div>

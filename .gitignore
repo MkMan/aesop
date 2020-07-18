@@ -1,6 +1,9 @@
 # Dependency directories
 node_modules/
 
+# testing
+coverage
+
 # Parcel related files
 dist/
 .cache/
