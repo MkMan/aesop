@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Aesop tech test",
   "scripts": {
-    "start": "concurrently \"parcel public/index.html --open\" \"nodemon mock-api/index.js \""
+    "start": "concurrently \"parcel public/index.html --open\" \"nodemon mock-api/index.js \"",
+    "test": "jest --watch"
   },
   "author": "Mustafa Mansour",
   "license": "ISC",
@@ -16,11 +17,17 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/jest": "^26.0.4",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
+    "babel-jest": "^26.1.0",
     "concurrently": "^5.2.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.26.10",
