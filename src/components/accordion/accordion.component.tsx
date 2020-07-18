@@ -1,21 +1,33 @@
 import React from "react";
+import { camelToKebab } from "../../utils/string.utils";
+import { AccordionChild, AccordionGroupName } from "./accordion.types";
 
-interface AccordionProps {
-  children: any[];
-  groupName: string;
-}
+export const Accordion: React.FunctionComponent<
+  AccordionGroupName & {
+    children: AccordionChild[];
+  }
+> = ({ children, groupName }) => {
+  const kebabGroupName = camelToKebab(groupName);
 
-interface AccordionItemProps {
-  groupName: string;
-  index: number;
-}
+  return (
+    <div className="accordion" id={kebabGroupName}>
+      {children.map((item, index) => (
+        <AccordionItem
+          key={`accordion-item=${index}`}
+          groupName={kebabGroupName}
+          title={item.title}
+          body={item.body}
+        />
+      ))}
+    </div>
+  );
+};
 
-const AccordionItem: React.FunctionComponent<AccordionItemProps> = ({
-  groupName,
-  index,
-}) => {
-  const headingId = `${groupName}-heading-${index}`;
-  const bodyId = `${groupName}-body-${index}`;
+const AccordionItem: React.FunctionComponent<
+  AccordionChild & AccordionGroupName
+> = ({ groupName, title, body }) => {
+  const headingId = `${camelToKebab(title)}-heading`;
+  const bodyId = `${camelToKebab(title)}-body`;
 
   return (
     <div className="card">
@@ -29,7 +41,7 @@ const AccordionItem: React.FunctionComponent<AccordionItemProps> = ({
             aria-expanded="true"
             aria-controls={bodyId}
           >
-            Collapsible Group Item #1
+            {title}
           </button>
         </h2>
       </div>
@@ -40,35 +52,8 @@ const AccordionItem: React.FunctionComponent<AccordionItemProps> = ({
         aria-labelledby={headingId}
         data-parent={`#${groupName}`}
       >
-        <div className="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-          terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
-          skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-          Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-          single-origin coffee nulla assumenda shoreditch et. Nihil anim
-          keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-          sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-          occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
-          you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
+        <div className="card-body">{body}</div>
       </div>
-    </div>
-  );
-};
-
-export const Accordion: React.FunctionComponent<AccordionProps> = ({
-  children,
-  groupName,
-}) => {
-  return (
-    <div className="accordion" id={groupName}>
-      {children.map((_item, index) => (
-        <AccordionItem
-          key={`accordion-item=${index}`}
-          groupName={groupName}
-          index={index}
-        />
-      ))}
     </div>
   );
 };

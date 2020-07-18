@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Aesop tech test",
   "scripts": {
-    "start": "concurrently \"parcel public/index.html --open\" \"nodemon mock-api/index.js \"",
+    "start": "concurrently \"parcel public/index.html --open\" \"nodemon --watch mock-api mock-api/index.js \"",
     "test": "jest --watch"
   },
   "author": "Mustafa Mansour",
