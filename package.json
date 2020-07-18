@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Aesop tech test",
   "scripts": {
-    "start": "parcel public/index.html --open"
+    "start": "concurrently \"parcel public/index.html --open\" \"nodemon mock-api/index.js \""
   },
   "author": "Mustafa Mansour",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
@@ -17,6 +18,10 @@
   "devDependencies": {
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.26.10",
     "typescript": "^3.9.7"
