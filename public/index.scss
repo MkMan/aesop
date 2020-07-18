@@ -4,8 +4,9 @@
   height: 100vh;
   max-width: $max-width;
   margin: auto;
+  padding: $base-unit * 4;
 }
 
 .title {
-  margin: $base-unit * 4;
+  margin: ($base-unit * 4) 0;
 }

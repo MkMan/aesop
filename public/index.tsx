@@ -6,6 +6,7 @@ import axios from "axios";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css"; // Import precompiled Bootstrap css
 import "./index.scss";
+import { Accordion } from "../src/components/accordion/accordion.component";
 
 const App = () => {
   axios
@@ -22,6 +23,7 @@ const App = () => {
   return (
     <div className="app">
       <h1 className="title">Aesop</h1>
+      <Accordion children={[1, 2, 45]} groupName="root" />
     </div>
   );
 };
