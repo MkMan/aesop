@@ -10,4 +10,7 @@ describe(`camelToKebab`, () => {
       "my-string-which-i-like"
     );
   });
+  it(`should replace special characters with dashes`, () => {
+    expect(camelToKebab("SE&8s #s")).toEqual("se-8s--s");
+  });
 });
