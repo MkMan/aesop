@@ -14,9 +14,9 @@ describe(`Accordion component`, () => {
 
     beforeEach(() => {
       accordionChildren = [
-        { title: "1", body: "hello world" },
-        { title: "2", body: "hello world again" },
-        { title: "3", body: "hello world again again" },
+        { title: "1", body: "hello world", itemCount: 1 },
+        { title: "2", body: "hello world again", itemCount: 2 },
+        { title: "3", body: "hello world again again", itemCount: 3 },
       ];
       renderResult = render(
         <Accordion groupName="group 1" children={accordionChildren} />
@@ -74,6 +74,7 @@ describe(`Accordion component`, () => {
         {
           title: "An item with nested component",
           body: BodyComponent,
+          itemCount: 323,
         },
       ];
     });
