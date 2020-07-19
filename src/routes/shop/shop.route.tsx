@@ -1,16 +1,29 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Menu, Sidebar } from "semantic-ui-react";
+
 import { AccordionChild } from "../../components/accordion/accordion.types";
 import { Accordion } from "../../components/accordion/accordion.component";
 import { getProducts } from "../../clients/aesop.client";
-import { Category, ProductsResponse } from "../../clients/response.types";
+import {
+  Category,
+  ProductsResponse,
+  Product,
+} from "../../clients/response.types";
 
 export const ShopRoute: React.FunctionComponent = () => {
   const [products, updateProducts] = useState<ProductsResponse>();
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [selectedProduct, updateSelectedProduct] = useState<Product>();
   const itemCount = useRef(0);
 
   useEffect(() => {
     getProducts().then((response) => updateProducts(response));
   }, []);
+
+  const onProductClick = (product: Product) => {
+    updateSelectedProduct(product);
+    setIsMenuVisible(true);
+  };
 
   const generateAccordion = (categories: Category[], groupName: string) => {
     const accordionChildren: AccordionChild[] = [];
@@ -22,7 +35,14 @@ export const ShopRoute: React.FunctionComponent = () => {
       if (category.items) {
         itemBody = generateAccordion(category.items, category.name);
       } else {
-        itemBody = <>View more</>;
+        itemBody = (
+          <button
+            onClick={() => onProductClick(category as Product)}
+            className="btn btn-primary"
+          >
+            View more
+          </button>
+        );
       }
 
       accordionChildren.push({
@@ -36,6 +56,25 @@ export const ShopRoute: React.FunctionComponent = () => {
   };
 
   return (
-    <>{products && generateAccordion(products.categories, "categories")}</>
+    <>
+      <Sidebar.Pushable>
+        <Sidebar
+          as={Menu}
+          animation="overlay"
+          icon="labeled"
+          inverted
+          onHide={() => setIsMenuVisible(false)}
+          vertical
+          visible={isMenuVisible}
+          width="very wide"
+        >
+          {selectedProduct && selectedProduct.name}
+        </Sidebar>
+
+        <Sidebar.Pusher dimmed={isMenuVisible}>
+          {products && generateAccordion(products.categories, "categories")}
+        </Sidebar.Pusher>
+      </Sidebar.Pushable>
+    </>
   );
 };

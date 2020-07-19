@@ -5,6 +5,7 @@ import axios from "axios";
 
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css"; // Import precompiled Bootstrap css
+import "semantic-ui-css/semantic.min.css";
 import "./index.scss";
 import { ShopRoute } from "../src/routes/shop/shop.route";
 

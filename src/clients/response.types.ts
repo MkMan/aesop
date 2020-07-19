@@ -9,7 +9,7 @@ export type Category = {
   items?: Product[] | Category[];
 };
 
-type Product = {
+export type Product = {
   name: string;
   variants: ProductVariant[];
 };
