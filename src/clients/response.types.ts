@@ -17,4 +17,5 @@ export type Product = {
 type ProductVariant = {
   name: string;
   imageAlt: string;
+  price: string;
 };

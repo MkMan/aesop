@@ -9,6 +9,7 @@ import {
   ProductsResponse,
   Product,
 } from "../../clients/response.types";
+import { ProductDetails } from "./product-details/product.details.component";
 
 export const ShopRoute: React.FunctionComponent = () => {
   const [products, updateProducts] = useState<ProductsResponse>();
@@ -68,7 +69,7 @@ export const ShopRoute: React.FunctionComponent = () => {
           visible={isMenuVisible}
           width="very wide"
         >
-          {selectedProduct && selectedProduct.name}
+          {selectedProduct && <ProductDetails product={selectedProduct} />}
         </Sidebar>
 
         <Sidebar.Pusher dimmed={isMenuVisible}>
