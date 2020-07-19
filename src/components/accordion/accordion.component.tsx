@@ -1,5 +1,5 @@
 import React from "react";
-import { camelToKebab } from "../../utils/string.utils";
+import { sanitiseForDom } from "../../utils/string.utils";
 import { AccordionChild, AccordionGroupName } from "./accordion.types";
 
 export const Accordion: React.FunctionComponent<
@@ -7,7 +7,7 @@ export const Accordion: React.FunctionComponent<
     children: AccordionChild[];
   }
 > = ({ children, groupName }) => {
-  const kebabGroupName = camelToKebab(groupName);
+  const kebabGroupName = sanitiseForDom(groupName);
 
   return (
     <div className="accordion" id={kebabGroupName}>
@@ -27,8 +27,8 @@ export const Accordion: React.FunctionComponent<
 const AccordionItem: React.FunctionComponent<
   AccordionChild & AccordionGroupName
 > = ({ groupName, title, body, itemCount }) => {
-  const headingId = `${camelToKebab(title)}-heading-${itemCount}`;
-  const bodyId = `${camelToKebab(title)}-body-${itemCount}`;
+  const headingId = `${sanitiseForDom(title)}-heading-${itemCount}`;
+  const bodyId = `${sanitiseForDom(title)}-body-${itemCount}`;
 
   return (
     <div className="card">
