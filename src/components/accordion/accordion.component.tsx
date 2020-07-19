@@ -17,6 +17,7 @@ export const Accordion: React.FunctionComponent<
           groupName={kebabGroupName}
           title={item.title}
           body={item.body}
+          itemCount={item.itemCount}
         />
       ))}
     </div>
@@ -25,9 +26,9 @@ export const Accordion: React.FunctionComponent<
 
 const AccordionItem: React.FunctionComponent<
   AccordionChild & AccordionGroupName
-> = ({ groupName, title, body }) => {
-  const headingId = `${camelToKebab(title)}-heading`;
-  const bodyId = `${camelToKebab(title)}-body`;
+> = ({ groupName, title, body, itemCount }) => {
+  const headingId = `${camelToKebab(title)}-heading-${itemCount}`;
+  const bodyId = `${camelToKebab(title)}-body-${itemCount}`;
 
   return (
     <div className="card">
